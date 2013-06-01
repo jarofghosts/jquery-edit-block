@@ -49,6 +49,8 @@
       return this.each(function () {
 
         var $this = $(this);
+        
+        if (!$this.hasClass('edit-block')) { $this.addClass('edit-block'); }
 
         $this.append('<div role="edit-buttons"></div>');
         var buttons = $this.find('div[role="edit-buttons"]');
