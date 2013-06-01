@@ -138,8 +138,8 @@
             });
             // remove form elements from DOM
             ebClean($this);
-          }
-          error: function () { window.alert('There was an error saving that information.'); }
+          },
+          error: function () { window.alert('There was an error saving that information.'); },
           complete: function () {
             $this.find("i.icon-refresh").removeClass("icon-refresh icon-spin").addClass("icon-save");
           }
