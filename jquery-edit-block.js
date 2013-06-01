@@ -94,14 +94,14 @@
               break;
             case "spinner":
             // create an input with jQuery UI spinner
-              inputField = '<input role="entry" size="3" name="' + $item.data('name') + '" value="' + $item.text().replace(/"/, '&quot;') + '">';
+              inputField = '<input role="entry" size="3" name="' + $item.data('name') + '" value="' + $item.text().replace(/"/g, '&quot;') + '">';
               ebSwap($item, inputField);
               $("input[name=" + $item.data('name') + "]").spinner();
               break;
             case "text":
             default:
             // create a text field
-              inputField = '<input role="entry" type="text" name="' + $item.data('name') + '" value="' + $item.text().replace(/"/, '&quot;') + '">';
+              inputField = '<input role="entry" type="text" name="' + $item.data('name') + '" value="' + $item.text().replace(/"/g, '&quot;') + '">';
               ebSwap($item, inputField);
               break;
           }
@@ -123,8 +123,8 @@
         // post to the form's action url with the contents of the form
         $.post(form.attr('action'),
           form.serialize(),
-          function (res) {
-            if (res === 'success') {
+          function (res, textStatus) {
+            if (textStatus === 'success' || textStatus === 'notmodified') {
               $this.find("[role=edit]").each(function () {
                 // revert all items back to "read" state
                 var name = this.getAttribute('data-name');
@@ -135,11 +135,10 @@
                   this.innerHTML = $("[name=" + name + "]").val();
                 }
               });
-              success('Information saved.');
               // remove form elements from DOM
               ebClean($this);
             } else {
-              error('There was an error saving that information.');
+              window.alert('There was an error saving that information.');
             }
             $this.find("i.icon-refresh").removeClass("icon-refresh icon-spin").addClass("icon-save");
           });
