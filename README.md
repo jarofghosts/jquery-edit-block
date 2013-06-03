@@ -33,19 +33,30 @@ $(function () {
 });
 ```
 
-..and that's it! Possible options for `data-edit` are `textarea`, `toggle`, and `text` which is the default if none
-is specified.
+..and that's it!
 
-There's a [demo here](http://jessekeane.me/science.html) of what it looks like
+## Edit Options
+Possible options for `data-edit` are:
+* `textarea` which creates a textarea in edit mode.
+* `toggle` for a checkbox
+* `text` for a text input, which is the default if nothing is specified.
+
+## API
+Possible values to pass to `.editblock()`:
+* *none* or `init` to initialize the element as an edit block.
+* `edit` to force the element into edit mode.
+* `save` to save the changes and revert to block mode.
+* `cancel` to force a cancellation, discarding any edits.
+
+## Playing Nice
+There's a (saving-disabled) [demo here](http://jessekeane.me/science.html) of what it looks like
 when (optionally) paired with [Font Awesome](http://fortawesome.github.io/Font-Awesome/)
 and [Foundation](http://foundation.zurb.com/). Also, if using [redactor](http://imperavi.com/redactor/) you can specify `textarea-rich` as the `data-edit`
 attribute for a redactor WYSIWYG entry. If using [jQuery UI](http://jqueryui.com/) you can specify `spinner` to make a jQuery UI spinner.
 
 ## Styling information
-When initialized, the class `edit-block` is added to the element.
-
+- When initialized, the class `edit-block` is added to the element.
 While the element is in "edit mode" it will have the class `editing` added to it.
-
 The buttons are of class `button`
 
 ## License
