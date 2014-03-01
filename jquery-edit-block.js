@@ -77,7 +77,12 @@
           switch ($item.data('edit')) {
             case "textarea":
             // create a textarea based on the text in the object
-              inputField = '<textarea role="entry" name="' + $item.data('name') + '">' + $item.text() + '</textarea>';
+            // if textarea predefined as <div> with rows and cols attributes
+							var cols = $item.attr('cols');
+							var rows = $item.attr('rows');
+							var rc = (cols == undefined ? "" : "cols='" + cols + "'") + (rows == undefined ? "" : " rows='" + rows + "'"); 
+							
+							inputField = '<textarea role="entry" name="' + $item.data('name') + '"'+ rc + '>' + $item.text() + '</textarea>';
               ebSwap($item, inputField);
               break;
             case "textarea-rich":
